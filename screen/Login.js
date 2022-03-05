@@ -10,7 +10,7 @@ const Login = ({ navigation }) => {
       console.log(email, password, 'input')
     const res = await loginAPI(email, password)
     console.log(res, 'res')
-    //   navigation.navigate('Dashboard');
+    navigation.navigate('Dashboard');
   }
 
   return (
