@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, FlatList, Dimensions,Button } from 'react-native';
 import { Card } from 'react-native-paper';
+import { useNavigation } from '@react-navigation/native';
 
 const data = [{
     title: 'Order',
@@ -32,7 +33,8 @@ const formatData = (data, numColumns) => {
 };
 
 const numColumns = 2;
-const Grid = ({ navigation }) => {
+const Grid = () => {
+    const navigation = useNavigation();
    const renderItem = ({ item, index }) => {
         if (item.empty === true) {
           return <View key={item.title} style={[styles.item, styles.itemInvisible]} />;
