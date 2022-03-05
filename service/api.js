@@ -1,4 +1,4 @@
-import { URL } from "../constant/constant";
+import { URL, UUID } from "../constant/constant";
 import axios from "axios";
 import * as SecureStore from 'expo-secure-store';
 
@@ -12,7 +12,7 @@ export const loginAPI = (username , password ) => {
         
         });  
         resolve(res.data);
-        await SecureStore.setItemAsync('uuid',res.data.userid);
+        await SecureStore.setItemAsync(UUID,res.data.userid);
         
       } catch (err) {
           console.log(err, 'error')
@@ -20,6 +20,21 @@ export const loginAPI = (username , password ) => {
       }
     });
   }
+
+  //logout API
+  export const logoutAPI = () => {
+    return new Promise(async (resolve, reject) => {
+      try {
+        // const res = await SecureStore.deleteItemAsync(UUID);
+        const uuid = await SecureStore.getItemAsync(UUID);
+        console.log(res, 'delete', '----', uuid, 'access-id')
+      } catch (err) {
+          console.log(err, 'error')
+        reject(err);
+      }
+    });
+  }
+
 
   //Heartbeat overview API
   export const overviewAPI = () => {
