@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Text, View, StyleSheet, Button } from 'react-native';
 import { BarCodeScanner } from 'expo-barcode-scanner';
 
-export default function Scanner() {
+export default function Scanner({handleChange}) {
   const [hasPermission, setHasPermission] = useState(null);
   const [scanned, setScanned] = useState(false);
   const [text, setText] = useState('Not yet scanned')
@@ -22,8 +22,8 @@ export default function Scanner() {
   // What happens when we scan the bar code
   const handleBarCodeScanned = ({ type, data }) => {
     setScanned(true);
-    setText(data)
-    console.log('Type: ' + type + '\nData: ' + data)
+    handleChange({type: type, data: data});
+    setText(data);
   };
 
   // Check permissions and return the screens

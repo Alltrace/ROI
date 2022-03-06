@@ -25,9 +25,9 @@ export const loginAPI = (username , password ) => {
   export const logoutAPI = () => {
     return new Promise(async (resolve, reject) => {
       try {
-        // const res = await SecureStore.deleteItemAsync(UUID);
-        const uuid = await SecureStore.getItemAsync(UUID);
-        console.log(res, 'delete', '----', uuid, 'access-id')
+        const res = await SecureStore.deleteItemAsync(UUID);
+        // const uuid = await SecureStore.getItemAsync(UUID);
+        // console.log(res, 'delete', '----', uuid, 'access-id')
       } catch (err) {
           console.log(err, 'error')
         reject(err);
@@ -55,3 +55,22 @@ export const loginAPI = (username , password ) => {
       }
     });
   }
+
+  //Order and Recieve API 
+    export const TagPlusAPI = (tags) => {
+      return new Promise(async (resolve, reject) => {
+        try {
+          const uuid = await SecureStore.getItemAsync('uuid');
+          const res = await axios.post(URL, {
+            userid: uuid,
+              event: "tag+",
+              tags: tags
+          });
+          console.log(tags, 'tag body req')
+          resolve(res.data);
+        } catch (err) {
+            console.log(err, 'error')
+          reject(err);
+        }
+      });
+    }
