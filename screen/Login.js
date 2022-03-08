@@ -1,6 +1,10 @@
 import { StackActions } from "@react-navigation/native";
 import React from "react";
-import { SafeAreaView, StyleSheet, TextInput, Button } from "react-native";
+import { View, StyleSheet, SafeAreaView } from "react-native";
+import { TextInput, Button, Drawer } from "react-native-paper";
+import Header from "../component/header/Header";
+import Logo from "../component/logo/Logo";
+
 import { loginAPI } from "../service/api";
 
 const Login = ({ navigation }) => {
@@ -19,35 +23,65 @@ const Login = ({ navigation }) => {
   };
 
   return (
-    <SafeAreaView>
+    <View style={styles.container}>
+      <Logo />
+      <Header>welcome back</Header>
       <TextInput
-        placeholder="User Name"
+        left={<TextInput.Icon name="email-outline" />}
+        label="User ID"
         style={styles.input}
+        mode="outlined"
         onChangeText={onChangeEmail}
         value={email}
       />
       <TextInput
-        placeholder="Password"
+        left={<TextInput.Icon name="lock-outline" />}
+        label="Password"
+        secureTextEntry={true}
         style={styles.input}
+        mode="outlined"
         onChangeText={onChangePassword}
         value={password}
       />
-
-      <Button title="Login" onPress={handleLogin} />
       <Button
-        title="direct DASHBOARD"
+        style={styles.buttonPadding}
+        icon="login"
+        mode="contained"
+        onPress={handleLogin}
+      >
+        Login
+      </Button>
+
+      <Button
+        icon="login"
+        mode="contained"
+        style={styles.input}
         onPress={() => navigation.navigate("Dashboard")}
-      />
-    </SafeAreaView>
+      >
+        Direct DASHBOARD
+      </Button>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
+  container: {
+    marginTop: 160,
+    marginLeft: 18,
+    marginRight: 18,
+    width: "100%",
+
+    maxWidth: 330,
+  },
+
   input: {
-    height: 40,
-    margin: 12,
-    borderWidth: 1,
-    padding: 10,
+    backgroundColor: "#e2e1f9",
+    margin: "6%",
+  },
+  buttonPadding: {
+    backgroundColor: "#6c65df",
+    padding: 8,
+    borderRadius: 15,
   },
 });
 

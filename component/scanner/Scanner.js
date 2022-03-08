@@ -1,18 +1,19 @@
-import React, { useState, useEffect } from 'react';
-import { Text, View, StyleSheet, Button } from 'react-native';
-import { BarCodeScanner } from 'expo-barcode-scanner';
+import React, { useState, useEffect } from "react";
+import { Text, View, StyleSheet } from "react-native";
+import { BarCodeScanner } from "expo-barcode-scanner";
+import { Button, Card } from "react-native-paper";
 
-export default function Scanner({handleChange}) {
+export default function Scanner({ handleChange }) {
   const [hasPermission, setHasPermission] = useState(null);
   const [scanned, setScanned] = useState(false);
-  const [text, setText] = useState('Not yet scanned')
+  const [text, setText] = useState("Not yet scanned");
 
   const askForCameraPermission = () => {
     (async () => {
       const { status } = await BarCodeScanner.requestPermissionsAsync();
-      setHasPermission(status === 'granted');
-    })()
-  }
+      setHasPermission(status === "granted");
+    })();
+  };
 
   // Request Camera Permission
   useEffect(() => {
@@ -22,7 +23,7 @@ export default function Scanner({handleChange}) {
   // What happens when we scan the bar code
   const handleBarCodeScanned = ({ type, data }) => {
     setScanned(true);
-    handleChange({type: type, data: data});
+    handleChange({ type: type, data: data });
     setText(data);
   };
 
@@ -31,14 +32,19 @@ export default function Scanner({handleChange}) {
     return (
       <View style={styles.container}>
         <Text>Requesting for camera permission</Text>
-      </View>)
+      </View>
+    );
   }
   if (hasPermission === false) {
     return (
       <View style={styles.container}>
         <Text style={{ margin: 10 }}>No access to camera</Text>
-        <Button title={'Allow Camera'} onPress={() => askForCameraPermission()} />
-      </View>)
+        <Button
+          title={"Allow Camera"}
+          onPress={() => askForCameraPermission()}
+        />
+      </View>
+    );
   }
 
   // Return the View
@@ -47,33 +53,50 @@ export default function Scanner({handleChange}) {
       <View style={styles.barcodebox}>
         <BarCodeScanner
           onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
-          style={{ height: 400, width: 400 }} />
+          style={{ height: 400, width: 400 }}
+        />
       </View>
-      <Text style={styles.maintext}>{text}</Text>
-
-      {scanned && <Button title={'Scan again?'} onPress={() => setScanned(false)} color='tomato' />}
+      <Card style={{ margin: "5%" }}>
+        <Text style={styles.maintext}>{text}</Text>
+      </Card>
+      {scanned && (
+        <Button
+          style={{
+            backgroundColor: "#6c65df",
+            marginHorizontal: "15%",
+            padding: 8,
+            borderRadius: 15,
+          }}
+          onPress={() => setScanned(false)}
+          color="white"
+        >
+          add item
+        </Button>
+      )}
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: "#f2f2f2",
+
+    justifyContent: "center",
   },
   maintext: {
     fontSize: 16,
     margin: 20,
   },
   barcodebox: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    height: 300,
-    width: 300,
-    overflow: 'hidden',
+    marginTop: 15,
+    marginHorizontal: "15%",
+    alignItems: "center",
+    justifyContent: "center",
+    height: 250,
+    width: 250,
+    overflow: "hidden",
     borderRadius: 30,
-    backgroundColor: 'tomato'
-  }
+    borderWidth: 2,
+    borderColor: "#6c65df",
+  },
 });
