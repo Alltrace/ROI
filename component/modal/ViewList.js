@@ -13,7 +13,7 @@ import {
 } from "react-native-paper";
 import { TagPlusAPI } from "../../service/api";
 
-const ViewList = ({ data }) => {
+const ViewList = ({ data, handleDelete }) => {
   const [visible, setVisible] = React.useState(false);
   const showModal = () => setVisible(true);
   const hideModal = () => setVisible(false);
@@ -30,25 +30,31 @@ const ViewList = ({ data }) => {
         <Dialog visible={visible} onDismiss={hideModal}>
           <Dialog.Content>
             {data.map((list, index) => (
-              <>
-                {console.log(list, "map-list-check")}
-                <List.Item
-                  title={list.tag}
-                  right={(props) => <List.Icon {...props} icon="delete" />}
-                />
-              </>
+              <List.Item
+                key={index}
+                title={list.tag}
+                right={(props) => (
+                  <List.Icon
+                    {...props}
+                    icon="delete"
+                    onPress={() => handleDelete(index)}
+                  />
+                )}
+              />
             ))}
-            <Button
-              style={{
-                backgroundColor: "#6c65df",
-                padding: 8,
-                borderRadius: 15,
-              }}
-              onPress={handleOrder}
-              mode="contained"
-            >
-              Proceed to order
-            </Button>
+            {data.length > 0 && (
+              <Button
+                style={{
+                  backgroundColor: "#6c65df",
+                  padding: 8,
+                  borderRadius: 15,
+                }}
+                onPress={handleOrder}
+                mode="contained"
+              >
+                Proceed to order
+              </Button>
+            )}
           </Dialog.Content>
         </Dialog>
       </Portal>
