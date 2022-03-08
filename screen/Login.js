@@ -1,5 +1,8 @@
 import React from "react";
-import { SafeAreaView, StyleSheet, TextInput,Button } from "react-native";
+import { View, StyleSheet,SafeAreaView  } from "react-native";
+import { TextInput,Button } from 'react-native-paper';
+
+
 import { loginAPI } from "../service/api";
 
 const Login = ({ navigation }) => {
@@ -14,36 +17,50 @@ const Login = ({ navigation }) => {
   }
 
   return (
-    <SafeAreaView>
-      <TextInput
-        placeholder="User Name"
-        style={styles.input}
+    <SafeAreaView  style={styles.center}>
+    <View    >
+      <TextInput style={styles.input}
+        left={<TextInput.Icon name="email-outline" />}
+        label="User ID"
+        mode='outlined'
         onChangeText={onChangeEmail}
         value={email}
       />
-      <TextInput
-        placeholder="Password"
-        style={styles.input}
+      <TextInput style={styles.input}
+        left={<TextInput.Icon name="lock-outline" />}
+        label="Password"
+        mode='outlined'
         onChangeText={onChangePassword}
         value={password}
       />
+  <Button icon="login" mode="contained" style={styles.buttonp}  onPress={() => navigation.navigate('Dashboard')} >
+   Login
+  </Button>
 
-    <Button
-        title="Login"
-        onPress={handleLogin}
-      />
-    <Button title='direct DASHBOARD' onPress={() => navigation.navigate('Dashboard')}/>
+  {/* <Button icon="login" mode="contained" style={styles.input} onPress={handleLogin}>
+    Direct DASHBOARD
+  </Button> */}
+    </View>
     </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
   input: {
-    height: 40,
-    margin: 12,
-    borderWidth: 1,
-    padding: 10,
+    margin:9,
   },
+
+  center:{
+    flex: 1,
+    padding: 80,
+  },
+   buttonp:{
+     margin:9,
+     padding:8,
+
+   }
+
+
 });
 
 export default Login;

@@ -60,15 +60,15 @@ const Grid = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginVertical: 20,
-    marginHorizontal: 10,
+    marginVertical: 0,
+    marginHorizontal: 14,
   },
   item: {
     backgroundColor: '#4D243D',
     alignItems: 'center',
     justifyContent: 'center',
     flex: 1,
-    margin: 5,
+    margin: 10,
     height: Dimensions.get('window').width / numColumns, // approximate a square
   },
   itemInvisible: {
