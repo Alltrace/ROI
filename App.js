@@ -16,20 +16,22 @@ export default function App() {
 
   return (
     <NavigationContainer>
-      {token ? (
-        <Stack.Navigator>
-          <Stack.Screen name="Dashboard" component={Dashboard} />
-          <Stack.Screen name="Overview" component={Overview} />
-          <Stack.Screen name="TagScreen" component={TagScreen} />
-        </Stack.Navigator>
-      ) : (
-        <Stack.Navigator>
-          <Stack.Screen name="Login" component={Login} />
-          <Stack.Screen name="Dashboard" component={Dashboard} />
-          <Stack.Screen name="Overview" component={Overview} />
-          <Stack.Screen name="TagScreen" component={TagScreen} />
-        </Stack.Navigator>
-      )}
+      <Stack.Navigator>
+        {token ? (
+          <Stack.Group>
+            <Stack.Screen name="Dashboard" component={Dashboard} />
+            <Stack.Screen name="Overview" component={Overview} />
+            <Stack.Screen name="TagScreen" component={TagScreen} />
+          </Stack.Group>
+        ) : (
+          <Stack.Group>
+            <Stack.Screen name="Login" component={Login} />
+            <Stack.Screen name="Dashboard" component={Dashboard} />
+            <Stack.Screen name="Overview" component={Overview} />
+            <Stack.Screen name="TagScreen" component={TagScreen} />
+          </Stack.Group>
+        )}
+      </Stack.Navigator>
     </NavigationContainer>
   );
 }
