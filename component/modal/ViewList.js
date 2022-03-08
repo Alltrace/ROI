@@ -21,9 +21,9 @@ const ViewList = ({ data, handleDelete }) => {
 
   const handleOrder = async () => {
     const res = await TagPlusAPI(data);
+    navigation.navigate("Dashboard");
     console.log(res, "res order");
   };
-
   return (
     <Provider>
       <Portal>
@@ -33,12 +33,11 @@ const ViewList = ({ data, handleDelete }) => {
               <List.Item
                 key={index}
                 title={list.tag}
-                right={(props) => (
-                  <List.Icon
-                    {...props}
+                right={() => (
+                  <Button
                     icon="delete"
                     onPress={() => handleDelete(index)}
-                  />
+                  ></Button>
                 )}
               />
             ))}

@@ -17,7 +17,6 @@ const TagScreen = () => {
     const tempList = [...list];
     tempList.splice(index, 1);
     setList(tempList);
-    console.log(list, "list");
   };
   return (
     <View style={{ flex: 1 }}>
