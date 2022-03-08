@@ -1,17 +1,22 @@
+import { StackActions } from "@react-navigation/native";
 import React from "react";
-import { SafeAreaView, StyleSheet, TextInput,Button } from "react-native";
+import { SafeAreaView, StyleSheet, TextInput, Button } from "react-native";
 import { loginAPI } from "../service/api";
 
 const Login = ({ navigation }) => {
-  const [email, onChangeEmail] = React.useState('');
-  const [password, onChangePassword] = React.useState('');
+  const [email, onChangeEmail] = React.useState("");
+  const [password, onChangePassword] = React.useState("");
 
   const handleLogin = async () => {
-      console.log(email, password, 'input')
-    const res = await loginAPI(email, password)
-    console.log(res, 'res')
-    navigation.navigate('Dashboard');
-  }
+    try {
+      const res = await loginAPI(email, password);
+      if (res) {
+        navigation.dispatch(StackActions.replace("Dashboard"));
+      }
+    } catch (error) {
+      console.log(error, "error");
+    }
+  };
 
   return (
     <SafeAreaView>
@@ -28,11 +33,11 @@ const Login = ({ navigation }) => {
         value={password}
       />
 
-    <Button
-        title="Login"
-        onPress={handleLogin}
+      <Button title="Login" onPress={handleLogin} />
+      <Button
+        title="direct DASHBOARD"
+        onPress={() => navigation.navigate("Dashboard")}
       />
-    <Button title='direct DASHBOARD' onPress={() => navigation.navigate('Dashboard')}/>
     </SafeAreaView>
   );
 };
