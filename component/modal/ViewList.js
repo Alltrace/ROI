@@ -41,7 +41,7 @@ const ViewList = ({ data, handleDelete }) => {
                 )}
               />
             ))}
-            {data.length > 0 && (
+            {data.length > 0 ? (
               <Button
                 style={{
                   backgroundColor: "#6c65df",
@@ -53,6 +53,8 @@ const ViewList = ({ data, handleDelete }) => {
               >
                 Proceed to order
               </Button>
+            ) : (
+              <Text>No Tags added to the List</Text>
             )}
           </Dialog.Content>
         </Dialog>
