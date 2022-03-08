@@ -21,9 +21,8 @@ const Dashboard = () => {
         icon="login"
         mode="contained"
         onPress={async () => {
-          // const res = await SecureStore.deleteItemAsync(UUID);
-          console.log(res, "logout res");
-          // navigation.navigate("Login", { screen: "Login" });
+          const res = await SecureStore.deleteItemAsync(UUID);
+          navigation.dispatch(StackActions.replace("Login"));
         }}
       >
         Logout

@@ -12,12 +12,16 @@ import React from "react";
 
 const Stack = createNativeStackNavigator();
 export default function App() {
-  let token = isAliveToken();
+  const [isLoggedIn, setLoggedIn] = React.useState(false);
+
+  React.useEffect(async () => {
+    setLoggedIn(await isAliveToken());
+  }, [isLoggedIn]);
 
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        {token ? (
+        {isLoggedIn ? (
           <Stack.Group>
             <Stack.Screen name="Dashboard" component={Dashboard} />
             <Stack.Screen name="Overview" component={Overview} />
@@ -25,7 +29,11 @@ export default function App() {
           </Stack.Group>
         ) : (
           <Stack.Group>
-            <Stack.Screen name="Login" component={Login} />
+            <Stack.Screen
+              options={{ headerShown: false }}
+              name="Login"
+              component={Login}
+            />
             <Stack.Screen name="Dashboard" component={Dashboard} />
             <Stack.Screen name="Overview" component={Overview} />
             <Stack.Screen name="TagScreen" component={TagScreen} />
