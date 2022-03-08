@@ -1,66 +1,83 @@
 import React from "react";
-import { View, StyleSheet,SafeAreaView  } from "react-native";
-import { TextInput,Button } from 'react-native-paper';
-
+import { View, StyleSheet, SafeAreaView } from "react-native";
+import { TextInput, Button, Drawer } from "react-native-paper";
+import Header from "../component/header/Header";
+import Logo from "../component/logo/Logo";
 
 import { loginAPI } from "../service/api";
 
 const Login = ({ navigation }) => {
-  const [email, onChangeEmail] = React.useState('');
-  const [password, onChangePassword] = React.useState('');
+  const [email, onChangeEmail] = React.useState("");
+  const [password, onChangePassword] = React.useState("");
 
   const handleLogin = async () => {
-      console.log(email, password, 'input')
-    const res = await loginAPI(email, password)
-    console.log(res, 'res')
-    navigation.navigate('Dashboard');
-  }
+    console.log(email, password, "input");
+    const res = await loginAPI(email, password);
+    console.log(res, "res");
+    navigation.navigate("Dashboard");
+  };
 
   return (
-    <SafeAreaView  style={styles.center}>
-    <View    >
-      <TextInput style={styles.input}
+    <View style={styles.container}>
+      <Logo />
+      <Header>welcome back</Header>
+      <TextInput
         left={<TextInput.Icon name="email-outline" />}
         label="User ID"
-        mode='outlined'
+        style={styles.input}
+        mode="outlined"
         onChangeText={onChangeEmail}
         value={email}
       />
-      <TextInput style={styles.input}
+      <TextInput
         left={<TextInput.Icon name="lock-outline" />}
         label="Password"
-        mode='outlined'
+        secureTextEntry={true}
+        style={styles.input}
+        mode="outlined"
         onChangeText={onChangePassword}
         value={password}
       />
-  <Button icon="login" mode="contained" style={styles.buttonp}  onPress={() => navigation.navigate('Dashboard')} >
-   Login
-  </Button>
+      <Button
+        style={styles.buttonPadding}
+        icon="login"
+        mode="contained"
+        onPress={handleLogin}
+      >
+        Login
+      </Button>
 
-  {/* <Button icon="login" mode="contained" style={styles.input} onPress={handleLogin}>
-    Direct DASHBOARD
-  </Button> */}
+      <Button
+        icon="login"
+        mode="contained"
+        style={styles.input}
+        onPress={() => navigation.navigate("Dashboard")}
+      >
+        Direct DASHBOARD
+      </Button>
     </View>
-    </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
+  container: {
+    marginTop: 160,
+    marginLeft: 18,
+    marginRight: 18,
+    width: "100%",
+
+    maxWidth: 330,
+  },
+
   input: {
-    margin:9,
+    backgroundColor: "#e2e1f9",
+    margin: "6%",
   },
-
-  center:{
-    flex: 1,
-    padding: 80,
+  buttonPadding: {
+    backgroundColor: "#6c65df",
+    padding: 8,
+    borderRadius: 15,
   },
-   buttonp:{
-     margin:9,
-     padding:8,
-
-   }
-
-
 });
 
 export default Login;
