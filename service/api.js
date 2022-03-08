@@ -5,20 +5,18 @@ import * as SecureStore from "expo-secure-store";
 export const loginAPI = (username, password) => {
   return new Promise(async (resolve, reject) => {
     try {
-      console.log(username, password);
       const res = await axios.post(URL, {
         login: username,
         password: password,
         event: "login",
       });
-
-      console.log(res);
-
-      resolve(res.data);
-      await SecureStore.setItemAsync(UUID, res.data.userid);
+      if (res.status === 200) {
+        resolve(res.data);
+        await SecureStore.setItemAsync(UUID, res.data.userid);
+      }
     } catch (err) {
       console.log(err, "error");
-      reject(err);
+      return "error";
     }
   });
 };
@@ -28,8 +26,6 @@ export const logoutAPI = () => {
   return new Promise(async (resolve, reject) => {
     try {
       const res = await SecureStore.deleteItemAsync(UUID);
-      // const uuid = await SecureStore.getItemAsync(UUID);
-      // console.log(res, 'delete', '----', uuid, 'access-id')
     } catch (err) {
       console.log(err, "error");
       reject(err);

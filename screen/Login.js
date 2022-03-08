@@ -1,3 +1,4 @@
+import { StackActions } from "@react-navigation/native";
 import React from "react";
 import { View, StyleSheet, SafeAreaView } from "react-native";
 import { TextInput, Button, Drawer } from "react-native-paper";
@@ -11,10 +12,14 @@ const Login = ({ navigation }) => {
   const [password, onChangePassword] = React.useState("");
 
   const handleLogin = async () => {
-    console.log(email, password, "input");
-    const res = await loginAPI(email, password);
-    console.log(res, "res");
-    navigation.navigate("Dashboard");
+    try {
+      const res = await loginAPI(email, password);
+      if (res) {
+        navigation.dispatch(StackActions.replace("Dashboard"));
+      }
+    } catch (error) {
+      console.log(error, "error");
+    }
   };
 
   return (
