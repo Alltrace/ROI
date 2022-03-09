@@ -80,14 +80,14 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
+
   item: {
     padding: 10,
     height: 130,
-    width: 160,
+    width: "45%",
     backgroundColor: "#e2e1f9",
     borderWidth: 2,
-    marginHorizontal: "2.8%",
-    marginVertical: "3%",
+    margin: 10,
     borderColor: "#6c65df",
 
     alignItems: "center",

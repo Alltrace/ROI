@@ -52,26 +52,23 @@ const Login = ({ navigation }) => {
         Login
       </Button>
 
-      <Button
+      {/* <Button
         icon="login"
         mode="contained"
         style={styles.input}
         onPress={() => navigation.navigate("Dashboard")}
       >
         Direct DASHBOARD
-      </Button>
+      </Button> */}
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 160,
-    marginLeft: 18,
-    marginRight: 18,
+    flex: 1,
+    justifyContent: "center",
     width: "100%",
-
-    maxWidth: 330,
   },
 
   input: {
@@ -82,6 +79,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#6c65df",
     padding: 8,
     borderRadius: 15,
+    marginHorizontal: "16%",
   },
 });
 

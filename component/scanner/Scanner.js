@@ -56,9 +56,9 @@ export default function Scanner({ handleChange }) {
           style={{ height: 400, width: 400 }}
         />
       </View>
-      <Card style={{ margin: "5%" }}>
-        <Text style={styles.maintext}>{text}</Text>
-      </Card>
+
+      <Text style={styles.maintext}>{text}</Text>
+
       {scanned && (
         <Button
           style={{
@@ -80,7 +80,7 @@ export default function Scanner({ handleChange }) {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: "#f2f2f2",
-
+    alignItems: "center",
     justifyContent: "center",
   },
   maintext: {
@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
   },
   barcodebox: {
     marginTop: 15,
-    marginHorizontal: "15%",
+
     alignItems: "center",
     justifyContent: "center",
     height: 250,

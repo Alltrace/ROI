@@ -1,15 +1,22 @@
 import React from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { Text } from "react-native-paper";
 import { theme } from "../../core/theme";
 
 export default function Header(props) {
-  return <Text style={styles.header} {...props} />;
+  return (
+    <View style={styles.container}>
+      <Text style={styles.header} {...props} />
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
+  container: {
+    justifyContent: "center",
+    alignItems: "center",
+  },
   header: {
-    marginLeft: 95,
     fontSize: 21,
     color: theme.colors.primary,
     fontWeight: "bold",
