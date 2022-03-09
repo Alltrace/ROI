@@ -11,12 +11,14 @@ import {
   Paragraph,
   Provider,
 } from "react-native-paper";
+import { useNavigation } from "@react-navigation/native";
 import { TagPlusAPI } from "../../service/api";
 
 const ViewList = ({ data, handleDelete }) => {
   const [visible, setVisible] = React.useState(false);
   const showModal = () => setVisible(true);
   const hideModal = () => setVisible(false);
+  const navigation = useNavigation();
   const containerStyle = { backgroundColor: "white" };
 
   const handleOrder = async () => {
