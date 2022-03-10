@@ -1,6 +1,6 @@
 import React from "react";
 import { Text } from "react-native-paper";
-import { View } from "react-native";
+import { View, ScrollView } from "react-native";
 import StatusCard from "../component/statusCard/StatusCard";
 import { overviewAPI } from "../service/api";
 
@@ -14,7 +14,7 @@ const Overview = () => {
   }, []);
 
   return (
-    <View>
+    <ScrollView>
       {tags.map((tag, index) => (
         <StatusCard
           key={index}
@@ -24,7 +24,7 @@ const Overview = () => {
           status={tag.status}
         />
       ))}
-    </View>
+    </ScrollView>
   );
 };
 

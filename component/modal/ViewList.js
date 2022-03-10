@@ -5,6 +5,7 @@ import {
   List,
   Text,
   Button,
+  Card,
   Icon,
   Chip,
   Dialog,
@@ -13,6 +14,7 @@ import {
 } from "react-native-paper";
 import { useNavigation } from "@react-navigation/native";
 import { TagPlusAPI } from "../../service/api";
+import { ScrollView } from "react-native";
 
 const ViewList = ({ data, handleDelete }) => {
   const [visible, setVisible] = React.useState(false);
@@ -27,54 +29,44 @@ const ViewList = ({ data, handleDelete }) => {
     console.log(res, "res order");
   };
   return (
-    <Provider>
-      <Portal>
-        <Dialog visible={visible} onDismiss={hideModal}>
-          <Dialog.Content>
-            {data.map((list, index) => (
-              <List.Item
-                key={index}
-                title={list.tag}
-                right={() => (
-                  <Button
-                    icon="delete"
-                    onPress={() => handleDelete(index)}
-                  ></Button>
-                )}
-              />
-            ))}
-            {data.length > 0 ? (
+    <ScrollView style={{ margin: 15 }}>
+      <List.Section style={{ maxHeight: 150 }}>
+        {data.map((list, index) => (
+          <List.Item
+            key={index}
+            title={list.tag}
+            right={() => (
               <Button
-                style={{
-                  backgroundColor: "#6c65df",
-                  padding: 8,
-                  borderRadius: 15,
-                }}
-                onPress={handleOrder}
-                mode="contained"
-              >
-                Proceed to order
-              </Button>
-            ) : (
-              <Text>No Tags added to the List</Text>
+                icon="delete"
+                onPress={() => handleDelete(index)}
+              ></Button>
             )}
-          </Dialog.Content>
-        </Dialog>
-      </Portal>
-      <Button
-        style={{
-          backgroundColor: "#6c65df",
-          marginTop: 30,
-          marginHorizontal: 55,
-          padding: 8,
-          borderRadius: 15,
-        }}
-        color="white"
-        onPress={showModal}
-      >
-        Show List
-      </Button>
-    </Provider>
+          />
+        ))}
+      </List.Section>
+
+      {data.length > 0 ? (
+        <Button
+          style={{
+            backgroundColor: "#6c65df",
+            padding: 8,
+            borderRadius: 15,
+            marginHorizontal: 10,
+            marginBottom: 10,
+          }}
+          onPress={handleOrder}
+          mode="contained"
+        >
+          Proceed to order
+        </Button>
+      ) : (
+        <Card style={{ margin: 15 }}>
+          <Text style={{ textAlign: "center", padding: 10 }}>
+            No Tags added to the List
+          </Text>
+        </Card>
+      )}
+    </ScrollView>
   );
 };
 

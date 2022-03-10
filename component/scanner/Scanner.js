@@ -6,7 +6,9 @@ import { Button, Card } from "react-native-paper";
 export default function Scanner({ handleChange }) {
   const [hasPermission, setHasPermission] = useState(null);
   const [scanned, setScanned] = useState(false);
-  const [text, setText] = useState("Not yet scanned");
+  const [text, setText] = useState(
+    "Scan QR code of the product you want to order"
+  );
 
   const askForCameraPermission = () => {
     (async () => {
@@ -70,7 +72,7 @@ export default function Scanner({ handleChange }) {
           onPress={() => setScanned(false)}
           color="white"
         >
-          add item
+          Scan Again
         </Button>
       )}
     </View>
