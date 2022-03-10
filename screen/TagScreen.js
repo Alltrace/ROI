@@ -3,14 +3,16 @@ import { Text, Divider } from "react-native-paper";
 import { View, Button } from "react-native";
 import Scanner from "../component/scanner/Scanner";
 import ViewList from "../component/modal/ViewList";
+import { testDuplicate } from "../utils/utils";
 
 const TagScreen = () => {
   const [list, setList] = React.useState([]);
 
   const handleQRData = ({ type: type, data: data }) => {
-    // console.log(type, "--", data, "QR data");
     const tempList = { tag: data };
-    setList([...list, tempList]);
+    const checkDuplicate = [...list, tempList];
+    const duplicate = testDuplicate(checkDuplicate);
+    if (!duplicate) setList([...list, tempList]);
   };
 
   const handleDeleteTag = (index) => {
