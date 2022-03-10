@@ -7,7 +7,7 @@ import Dashboard from "./screen/Dashboard";
 import Overview from "./screen/Overview";
 import TagScreen from "./screen/TagScreen";
 import Grid from "./component/grid/Grid";
-import { isAliveToken } from "./utils/testToken";
+import { isAliveToken } from "./utils/utils";
 import React from "react";
 
 const Stack = createNativeStackNavigator();
@@ -26,6 +26,11 @@ export default function App() {
             <Stack.Screen name="Dashboard" component={Dashboard} />
             <Stack.Screen name="Overview" component={Overview} />
             <Stack.Screen name="TagScreen" component={TagScreen} />
+            <Stack.Screen
+              options={{ headerShown: false }}
+              name="Login"
+              component={Login}
+            />
           </Stack.Group>
         ) : (
           <Stack.Group>
