@@ -1,7 +1,7 @@
 import { StackActions } from "@react-navigation/native";
 import React from "react";
 import { View, StyleSheet, SafeAreaView } from "react-native";
-import { TextInput, Button, Drawer } from "react-native-paper";
+import { TextInput, Button, Paragraph } from "react-native-paper";
 import Header from "../component/header/Header";
 import Logo from "../component/logo/Logo";
 
@@ -10,6 +10,7 @@ import { loginAPI } from "../service/api";
 const Login = ({ navigation }) => {
   const [email, onChangeEmail] = React.useState("");
   const [password, onChangePassword] = React.useState("");
+  const [error, setError] = React.useState(false);
 
   const handleLogin = async () => {
     try {
@@ -18,7 +19,7 @@ const Login = ({ navigation }) => {
         navigation.dispatch(StackActions.replace("Dashboard"));
       }
     } catch (error) {
-      console.log(error, "error");
+      setError(true);
     }
   };
 
@@ -43,6 +44,12 @@ const Login = ({ navigation }) => {
         onChangeText={onChangePassword}
         value={password}
       />
+      {error && (
+        <Paragraph style={styles.errorMessage}>
+          Incorrect username or password
+        </Paragraph>
+      )}
+
       <Button
         style={styles.buttonPadding}
         icon="login"
@@ -80,6 +87,14 @@ const styles = StyleSheet.create({
     padding: 8,
     borderRadius: 15,
     marginHorizontal: "16%",
+  },
+  errorMessage: {
+    textAlign: "center",
+    fontSize: 16,
+    fontWeight: "bold",
+    marginTop: "-4%",
+    marginBottom: "5%",
+    color: "red",
   },
 });
 
