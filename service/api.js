@@ -15,8 +15,7 @@ export const loginAPI = (username, password) => {
         await SecureStore.setItemAsync(UUID, res.data.userid);
       }
     } catch (err) {
-      console.log(err, "error");
-      return "error";
+      reject(err);
     }
   });
 };

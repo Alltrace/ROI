@@ -9,3 +9,12 @@ export const isAliveToken = async () => {
     return false;
   }
 };
+
+export const testDuplicate = (values) => {
+  var hasDuplicate = false;
+  const uniqueValues = new Set(values.map((v) => v.tag));
+  if (uniqueValues.size < values.length) {
+    hasDuplicate = true;
+  }
+  return hasDuplicate;
+};
