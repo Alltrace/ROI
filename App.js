@@ -25,7 +25,7 @@ export default function App() {
           <Stack.Group>
             <Stack.Screen name="Dashboard" component={Dashboard} />
             <Stack.Screen name="Overview" component={Overview} />
-            <Stack.Screen name="TagScreen" component={TagScreen} />
+            <Stack.Screen name="Order" component={TagScreen} />
             <Stack.Screen
               options={{ headerShown: false }}
               name="Login"
@@ -41,7 +41,7 @@ export default function App() {
             />
             <Stack.Screen name="Dashboard" component={Dashboard} />
             <Stack.Screen name="Overview" component={Overview} />
-            <Stack.Screen name="TagScreen" component={TagScreen} />
+            <Stack.Screen name="Order" component={TagScreen} />
           </Stack.Group>
         )}
       </Stack.Navigator>

@@ -14,7 +14,7 @@ const data = [
   {
     title: "Order",
     icon: "cart",
-    path: "TagScreen",
+    path: "Order",
   },
   {
     title: "Overview",
@@ -24,7 +24,7 @@ const data = [
   {
     title: "Receive",
     icon: "cart-arrow-down",
-    path: "TagScreen",
+    path: "Order",
   },
 ];
 
