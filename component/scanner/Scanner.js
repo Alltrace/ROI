@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Text, View, StyleSheet } from "react-native";
 import { BarCodeScanner } from "expo-barcode-scanner";
-import { Button, Card } from "react-native-paper";
+import { Button } from "react-native-paper";
 
 export default function Scanner({ handleChange }) {
   const [hasPermission, setHasPermission] = useState(null);

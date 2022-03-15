@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, Divider, Card, Button } from "react-native-paper";
+import { Text, Card, Button } from "react-native-paper";
 import { View } from "react-native";
 import Scanner from "../component/scanner/Scanner";
 import ViewList from "../component/modal/ViewList";
@@ -7,7 +7,7 @@ import { TagPlusAPI } from "../service/api";
 import { testDuplicate } from "../utils/utils";
 import { useNavigation } from "@react-navigation/native";
 
-const TagScreen = () => {
+const Receive = () => {
   const [list, setList] = React.useState([]);
   const navigation = useNavigation();
 
@@ -24,10 +24,8 @@ const TagScreen = () => {
     setList(tempList);
   };
   const handleOrder = async () => {
-    console.log("hit handle order");
     const res = await TagPlusAPI(list);
     navigation.navigate("Dashboard");
-    console.log(res, "res order");
   };
 
   return (
@@ -59,4 +57,4 @@ const TagScreen = () => {
   );
 };
 
-export default TagScreen;
+export default Receive;

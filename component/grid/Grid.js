@@ -1,32 +1,8 @@
 import React from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  FlatList,
-  Dimensions,
-  Button,
-} from "react-native";
+import { StyleSheet, Text, View, FlatList } from "react-native";
 import { Card, IconButton } from "react-native-paper";
 import { useNavigation } from "@react-navigation/native";
-
-const data = [
-  {
-    title: "Order",
-    icon: "cart",
-    path: "TagScreen",
-  },
-  {
-    title: "Overview",
-    icon: "file-document",
-    path: "Overview",
-  },
-  {
-    title: "Receive",
-    icon: "cart-arrow-down",
-    path: "TagScreen",
-  },
-];
+import { gridPage as data } from "../../constant/constant";
 
 const formatData = (data, numColumns) => {
   const numberOfFullRows = Math.floor(data.length / numColumns);

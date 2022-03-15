@@ -1,15 +1,11 @@
 import React from "react";
 import { StackActions } from "@react-navigation/native";
-import { Text } from "react-native-paper";
 import { SafeAreaView, StyleSheet } from "react-native";
-import { TextInput, Button } from "react-native-paper";
+import { Button } from "react-native-paper";
 import Grid from "../component/grid/Grid";
-import Overview from "./Overview";
-import TagScreen from "./TagScreen";
 import { useNavigation } from "@react-navigation/native";
 import { UUID } from "../constant/constant";
 import * as SecureStore from "expo-secure-store";
-import Login from "./Login";
 
 const Dashboard = () => {
   const navigation = useNavigation();

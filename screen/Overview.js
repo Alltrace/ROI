@@ -9,7 +9,6 @@ const Overview = () => {
 
   React.useEffect(async () => {
     const res = await overviewAPI();
-    console.log(res.tags, "overview res");
     setTags(res?.tags);
   }, []);
 
