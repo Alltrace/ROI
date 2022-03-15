@@ -60,7 +60,6 @@ export const TagPlusAPI = (tags) => {
         event: "tag+",
         tags: tags,
       });
-      console.log(tags, "tag body req");
       resolve(res.data);
     } catch (err) {
       console.log(err, "error");

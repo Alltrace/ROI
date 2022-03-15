@@ -1,12 +1,11 @@
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet } from "react-native";
 import Login from "./screen/Login";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Dashboard from "./screen/Dashboard";
 import Overview from "./screen/Overview";
-import TagScreen from "./screen/TagScreen";
-import Grid from "./component/grid/Grid";
+import Order from "./screen/Order";
+import Receive from "./screen/Receive";
 import { isAliveToken } from "./utils/utils";
 import React from "react";
 
@@ -25,7 +24,8 @@ export default function App() {
           <Stack.Group>
             <Stack.Screen name="Dashboard" component={Dashboard} />
             <Stack.Screen name="Overview" component={Overview} />
-            <Stack.Screen name="Order" component={TagScreen} />
+            <Stack.Screen name="Order" component={Order} />
+            <Stack.Screen name="Receive" component={Receive} />
             <Stack.Screen
               options={{ headerShown: false }}
               name="Login"
@@ -41,7 +41,8 @@ export default function App() {
             />
             <Stack.Screen name="Dashboard" component={Dashboard} />
             <Stack.Screen name="Overview" component={Overview} />
-            <Stack.Screen name="Order" component={TagScreen} />
+            <Stack.Screen name="Order" component={Order} />
+            <Stack.Screen name="Receive" component={Receive} />
           </Stack.Group>
         )}
       </Stack.Navigator>

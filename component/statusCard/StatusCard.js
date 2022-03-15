@@ -1,7 +1,6 @@
 import React from "react";
-import { Text, Card, Title, Paragraph, Badge } from "react-native-paper";
+import { Card, Title, Paragraph } from "react-native-paper";
 import { View, StyleSheet } from "react-native";
-import { backgroundColor } from "react-native/Libraries/Components/View/ReactNativeStyleAttributes";
 
 const StatusCard = ({ productName, quantity, rfid, status }) => {
   return (

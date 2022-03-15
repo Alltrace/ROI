@@ -1,6 +1,6 @@
 import { StackActions } from "@react-navigation/native";
 import React from "react";
-import { View, StyleSheet, SafeAreaView } from "react-native";
+import { View, StyleSheet } from "react-native";
 import { TextInput, Button, Paragraph } from "react-native-paper";
 import Header from "../component/header/Header";
 import Logo from "../component/logo/Logo";
